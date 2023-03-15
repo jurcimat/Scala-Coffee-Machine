@@ -1,0 +1,154 @@
+<h2>Strings</h2>
+<p>One of the basic programming tasks is interacting with users through messages, asking for the input, and providing an answer in the output. These messages are text sequences commonly known as <strong>Strings</strong>. In the most basic greeting program, a message like <code class="language-scala">"Hello, Scala!"</code> is actually a string! Since strings are really common and important in programming, let's learn more about this type in Scala.</p>
+
+<h5 id="inside-string">Inside String</h5>
+
+<p>In Scala, <code class="language-scala">String</code> type is an immutable collection of characters. Let dive deeper into each of the points in the previous sentence. Since we know about collections and immutability, we can picture a string as an ordered collection of <code class="language-scala">Char</code> with a defined length. In this collection, just like in <code class="language-scala">List</code>, it is not possible to change one <code class="language-scala">Char</code> in the existing string: you have to generate a copy with the substitution.</p>
+
+<p>This type is alias for <strong>java.lang.String, </strong>Java base type. Scala extends the basic functionality with a bunch of convenient methods, most  revealing the collection side of strings. We will come back to these methods soon; let's start with defining Strings.</p>
+
+<h5 id="defining-strings">Defining Strings</h5>
+
+<p>You can define a String using the quotes <code class="language-scala">" "</code>:</p>
+
+<pre><code class="language-scala">scala&gt; "This is a text"
+res1: String = This is a text
+scala&gt; val s = ""
+s: String = 
+</code></pre>
+
+<p>Multi-line strings can be defined with the help of triple quotes <code class="language-scala"><strong>""" """</strong></code>:</p>
+
+<pre><code class="language-scala">scala&gt; """This is text 
+     | with several
+     | lines"""
+res2: String =
+This is text
+with several
+lines
+</code></pre>
+
+<p>You can use special symbols to represent new lines, tabs, spaces, and so on:</p>
+
+<pre><code class="language-scala">scala&gt; "Text with\nspecial\t symbols"
+res3: String =
+Text with
+special  symbols
+</code></pre>
+
+<p>You can construct a new string from the existing ones using <strong>concatenation</strong>:</p>
+
+<pre><code class="language-scala">scala&gt; s + s
+res4: String = This is a text tooThis is a text too
+</code></pre>
+
+<p>A string is a collection of characters, so we can define it from the collection itself:</p>
+
+<pre><code class="language-scala">scala&gt; val list = List('a', 'b', 'c')
+list: List[Char] = List(a, b, c)
+scala&gt; list.mkString
+res5: String = abc
+</code></pre>
+
+<p>Note that typically, we define Strings with Unicode encoding (UTF-8).</p>
+
+<h5 id="string-transformations">String transformations</h5>
+
+<p>Like we said before, Scala String originated from Java String, so you can run any method defined for the Java standard library. Here are some of them, just to recap: <code class="language-scala">length</code>, <code class="language-scala">isEmpty</code>, <code class="language-scala">toUpperCase</code>, <code class="language-scala">startsWith</code>, <code class="language-scala">substring</code>, <code class="language-scala">replace</code>, <code class="language-scala">split</code>.</p>
+
+<p>Also, Scala provides some methods to transform String data:</p>
+
+<ul>
+	<li><code class="language-scala">filter</code>, <code class="language-scala">take</code>, <code class="language-scala">slice</code>: there are plenty of methods defined for String as a sequence of characters. You can filter or divide a sequence forming a new String result:</li>
+</ul>
+
+<pre><code class="language-scala">scala&gt; "Hello, Scala".take(5)
+res6: String = Hello
+scala&gt; "Hello, Scala".slice(7, 12)
+res7: String = Scala
+</code></pre>
+
+<ul>
+	<li><code class="language-scala">sorted</code> and <code class="language-scala">sortBy</code> return a result with sorted characters:</li>
+</ul>
+
+<pre><code class="language-rust">scala&gt; "Hello, Scala".sorted
+res8: String = " ,HSaacelllo"
+</code></pre>
+
+<ul>
+	<li><code class="language-scala">stripPrefix</code>, <code class="language-scala">stripSuffix</code>, and <code class="language-scala">stripMargin</code> cut the prefix, suffix, or the first specified character of every line:</li>
+</ul>
+
+<pre><code class="language-scala">scala&gt; """D 
+     |O
+     |C""".stripMargin('|')
+res9: String =
+D
+O
+C
+</code></pre>
+
+<ul>
+	<li><code class="language-scala">toBoolean</code>, <code class="language-scala">toByte</code>, <code class="language-scala">toShort</code>, <code class="language-scala">toInt</code>, <code class="language-scala">toLong</code>, <code class="language-scala">toFloat</code>, <code class="language-scala">toDouble</code> convert String to another type:</li>
+</ul>
+
+<pre><code class="language-scala">scala&gt; "123".toDouble
+res10: Double = 123.0
+scala&gt; "123".toBoolean
+java.lang.IllegalArgumentException: For input string: "123"
+</code></pre>
+
+<ul>
+	<li><code class="language-scala">lines</code> iterates over String lines:</li>
+</ul>
+
+<pre><code class="language-scala">scala&gt; "First line\nSecond line".lines.next
+res11: String = First line
+</code></pre>
+
+<ul>
+	<li>Java <code class="language-scala">charAt</code> returns a character in the specified string position; it can be replaced by <code class="language-scala">s(index)</code>:</li>
+</ul>
+
+<pre><code class="language-scala">scala&gt; "Hello, Scala"(7)
+res12: Char = S
+</code></pre>
+
+<h5 id="interpolation">Interpolation</h5>
+
+<p>Scala offers an interesting technique of inserting values in string statements:</p>
+
+<pre><code class="language-scala">scala&gt; val i = 234
+i: Int = 234
+scala&gt; s"i: $i"
+res13: String = i: 234
+</code></pre>
+
+<p>We prefix the string literal with <code class="language-scala"><strong>s</strong></code> (short of <em>standardInterpolator</em>) and use the <code class="language-scala">i</code> value inside to substitute <code class="language-scala"><strong>$i</strong></code> with the <code class="language-scala">i</code> value. The rules for substitution are simple: every part of a string statement starting with <strong>$</strong> is substituted with a previously defined name, which  could be a value, variable, or a function. You can use the extended syntax to deal with the more complicated statements:</p>
+
+<pre><code class="language-scala">scala&gt; s"Output -i: ${-i},\nwith help of $$i" 
+res14: String =
+Output -i: -234,
+with help of $i
+</code></pre>
+
+<p>Note that we can use the symbol <strong>$</strong> and special symbols with the interpolated string.</p>
+
+<h5 id="comparing-strings">Comparing Strings</h5>
+
+<p>Java has some tricky comparison for the String type: we can compare with <strong>==</strong> (compare references) or <strong>equals</strong> (compare values). In Scala, you can always compare by value with <code class="language-scala"><strong>==</strong></code>:</p>
+
+<pre><code class="language-scala">scala&gt; val s1 = "A"
+s1: String = A
+scala&gt; val s2 = "A"
+s2: String = A
+scala&gt; s1 == s2
+res17: Boolean = true
+scala&gt; s1 == "B"
+res18: Boolean = false
+</code></pre>
+
+<h5 id="conclusion">Conclusion</h5>
+
+<p>Now you know how to define Scala Strings with different methods, transform String values using both Java and Scala methods, use interpolators to format text data, and compare Strings.</p>

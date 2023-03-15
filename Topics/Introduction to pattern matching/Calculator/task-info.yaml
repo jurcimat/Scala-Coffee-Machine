@@ -1,0 +1,24 @@
+type: code
+files:
+- name: src/Calculator.scala
+  visible: true
+  text: |-
+    object Calculator extends App {
+
+      val input = scala.io.StdIn.readLine().split(' ').toList
+      input match {
+        case a :: "+" :: b :: Nil if a.forall(_.isDigit) && ??? =>
+          println(a.toInt + ???)
+        case a :: ??? :: b :: Nil ??? =>
+          println(???)
+        case ??? => println("Unsupported expression")
+      }
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/16337#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Fri, 10 Mar 2023 15:14:05 UTC"
+record: -1
+submission_language: scala

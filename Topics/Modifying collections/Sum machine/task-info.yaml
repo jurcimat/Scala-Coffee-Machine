@@ -1,0 +1,18 @@
+type: code
+custom_name: Sum machine!
+files:
+- name: src/Summator.scala
+  visible: true
+  text: "object Summator extends App {\n  val inputDefinitions = scala.io.StdIn.readLine()\n\
+    \  val inputExpression = scala.io.StdIn.readLine()\n  var variables = ???.empty[String,\
+    \ Int]\n  inputDefinitions\n    .split(',')\n    .filter(!_.isEmpty)    \n   \
+    \ .map { ???.split('=') }\n    .map { array => variables += ??? }\n  println(inputExpression.split(???).map(???\
+    \ => variables.getOrElse(???)).sum)\n}"
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/16320#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Fri, 10 Mar 2023 13:46:51 UTC"
+record: -1
+submission_language: scala

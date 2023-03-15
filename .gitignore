@@ -1,0 +1,11 @@
+# Project exclude paths
+/.gradle/
+/Coffee Machine (Scala)/task/build/
+/Coffee Machine (Scala)/task/out/
+/Coffee Machine (Scala)/task/out/production/classes/
+/Topics/Branching/Fibonacci sequence/out/
+/Topics/Branching/Fibonacci sequence/out/production/classes/
+/Topics/Defining new collections/Correct statement/out/
+/Topics/Defining new collections/Correct statement/out/production/classes/
+/Topics/Modifying collections/Sum machine/out/
+/Topics/Modifying collections/Sum machine/out/production/classes/

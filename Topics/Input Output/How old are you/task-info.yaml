@@ -1,0 +1,21 @@
+type: code
+custom_name: How old are you?
+files:
+- name: src/ScalaExample.scala
+  visible: true
+  text: |-
+    import scala.io.StdIn.readLine
+
+    object ScalaExample {
+      def main(args: Array[String]) {
+        // write your code here
+      }
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/20441#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Thu, 09 Mar 2023 09:18:14 UTC"
+record: -1
+submission_language: scala

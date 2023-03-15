@@ -1,0 +1,15 @@
+type: code
+files:
+- name: src/WordsReverser.scala
+  visible: true
+  text: "object WordsReverser extends App {\n  val s = scala.io.StdIn.readLine()\n\
+    \  val result = s.reverse.split(???).map(w => w.reverse).mkString(???)  \n  println(result)\n\
+    }"
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/16328#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Wed, 08 Mar 2023 15:47:43 UTC"
+record: -1
+submission_language: scala

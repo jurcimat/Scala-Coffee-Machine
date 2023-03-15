@@ -1,0 +1,142 @@
+<h2>Introduction to pattern matching</h2>
+<h5 id="introduction">Introduction</h5>
+
+<p>Imagine that we want to write a program that outputs the day of the week according to a number that we input. We could implement this with the help of the branching construction like the one in the example below:</p>
+
+<pre><code class="language-scala">if (i == 0) "Monday"
+else if (i == 1) "Tuesday"
+else if (i == 2) "Wednesday"
+else if (i == 3) "Thursday"
+else if (i == 4) "Friday"
+else if (i == 5) "Saturday"
+else "Sunday"</code></pre>
+
+<p>This code looks a bit too repetitive. Moreover, with cases when we have more than seven variants (e.g. months) there will be some really error-prone code structures. Is it possible to match one value to another with fewer overheads? Yes, in Scala we can do just that with matching.</p>
+
+<h5 id="match-expressions">Match expressions</h5>
+
+<p>In Scala you can match input value by patterns with the help of the <code class="language-scala">match</code> keyword. The simplest pattern is the explicit value. Let's describe the case with the weekdays using matching:</p>
+
+<pre><code class="language-scala">i match {
+  case 0 =&gt; "Monday"
+  case 1 =&gt; "Tuesday"
+  case 2 =&gt; "Wednesday"
+  case 3 =&gt; "Thursday"
+  case 4 =&gt; "Friday"
+  case 5 =&gt; "Saturday"
+  case _ =&gt; "Sunday"
+}</code></pre>
+
+<p>As you can see, we still have to input the value of <code class="language-scala">i</code>, but the difference from the <code class="language-scala">if-else-if</code> structure is in the series of patterns we use to assign the resulting value to the input. Each pattern starts with <code class="language-scala">case</code> and has to contain a pattern and a result after <code class="language-scala">=&gt;</code>. The input will be processed over patterns from top to bottom and the detected match will be returned as the result. We could have a special pattern with the <code class="language-scala">_</code> symbol representing a match for every input. It can play the role of the default result (if none of the patterns above matches the input, the default result will serve as the output).</p>
+
+<p>The example above is for matching to a specific value. But we could match the input with the different types of values:</p>
+
+<pre><code class="language-scala">scala&gt;   1 match {
+     |     case 1.0 =&gt; println("double one")
+     |     case _ =&gt; println("not double one")
+     |   }
+double one</code></pre>
+
+<p>In the example above we are matching <code class="language-scala">Int</code> value with <code class="language-scala">Double</code>. We have a match since they are equal from a mathematical perspective. Note, however, that we could have action as the result of a match and return <code class="language-scala">Unit</code>. We could match input only by type like in the example below:</p>
+
+<pre><code class="language-scala">scala&gt;   "test" match {
+     |     case s: String =&gt;
+     |       val l = s.length  
+     |       println(s"string with length $l")
+     |   }
+string with length 4</code></pre>
+
+<p>In this example, the result of matching for <code class="language-scala">String</code> type outputs a string. As you can see, we could have code blocks after <code class="language-scala">=&gt;</code>, not just one string.</p>
+
+<h5 id="alternatives">Alternatives</h5>
+
+<p>We can assign one result to a set of patterns:</p>
+
+<pre><code class="language-scala">i match {
+  case 1 | 3 | 5 =&gt; "odd"
+  case 2 | 4 | 6 =&gt; "even"
+}</code></pre>
+
+<p>In the example above we use <code class="language-scala">|</code> (or) operator to have alternatives for odd and even numbers. We can combine any type of pattern to simplify our code. We can use additional filtering with <code class="language-scala">if</code><em> </em>as well:</p>
+
+<pre><code class="language-scala">i match {
+  case x if x % 2 != 0 =&gt; "odd"
+  case _ =&gt; "even"
+}</code></pre>
+
+<p>Here we check if the modulo of input is not zero as part of the <code class="language-scala">case</code> value <code class="language-scala">if</code> expression that returns a boolean result <code class="language-scala">=&gt;</code>.  </p>
+
+<h5 id="collections-matching">Collections matching</h5>
+
+<p>We could match collection types with patterns. For <code class="language-scala">List</code> we can use the <code class="language-scala">::</code> operator:</p>
+
+<pre><code class="language-scala">scala&gt;   List(1, 2, 3) match {
+     |     case 1 :: _ =&gt; println(s"head is 1")
+     |     case _ =&gt;   
+     |   }
+head is 1</code></pre>
+
+<p>In the example above we match the head element of <code class="language-scala">List</code> with 1. We can check additional properties of the collections with the help of <code class="language-scala">if</code>:</p>
+
+<pre><code class="language-scala">scala&gt;   val set = Set(2, 3, 4)
+set: scala.collection.immutable.Set[Int] = Set(2, 3, 4)
+scala&gt;   set match {
+     |     case s if s.contains(5) =&gt; println("contains 5")
+     |     case _ if set.size &gt; 2 =&gt; println("size &gt; 2")
+     |   }
+size &gt; 2</code></pre>
+
+<p>Here we match the set if it contains 5 to one result and if size more 2 to another. As we have no 5 at input we try second one pattern and success.</p>
+
+<h5 id="match-placement-in-code">Match placement in code</h5>
+
+<p>In Scala we could match an expression as part of a code block:</p>
+
+<pre><code class="language-scala">Map('a' -&gt; 1) match {
+  case _: Map[Char, Int] =&gt; println("map")
+  case _ =&gt;   
+}</code></pre>
+
+<p>Another variant could be an extraction matched to a function:</p>
+
+<pre><code class="language-scala">def evenOrOdd(i: Int): String = i match {
+  case x if x % 2 != 0 =&gt; "odd"
+  case _ =&gt; "even"
+}</code></pre>
+
+<p>The above pattern-matching logic with the function <code class="language-scala">evenOrOdd</code> can be used with any other function.</p>
+
+<h5 id="correctness-and-exhaustivity">Correctness and exhaustivity</h5>
+
+<p>Not all the variants of matching are allowed by the compiler. If you try to match <code class="language-scala">String</code> to <code class="language-scala">Int</code>, you will get an error:</p>
+
+<pre><code class="language-scala">scala&gt; "test" match { case _: Int =&gt; println("int") }
+&lt;console&gt;:12: error: scrutinee is incompatible with pattern type;
+ found   : Int
+ required: String
+       "test" match { case _: Int =&gt; println("int") }</code></pre>
+
+<p>Note that the compiler can't check all the variants, like <code class="language-scala">Char</code> can be matched with associated <code class="language-scala">Int</code> value:</p>
+
+<pre><code class="language-scala">scala&gt;   'a' match {
+     |     case 97 =&gt; println("a")
+     |   }
+a</code></pre>
+
+<p>You may have spotted that not all of the examples above show total matching, meaning that not all the cases might be covered:</p>
+
+<pre><code class="language-scala">def evenOrOdd(i: Int): String = i match {
+  case 1 | 3 | 5 =&gt; "odd"
+  case 2 | 4 | 6 =&gt; "even"
+}</code></pre>
+
+<p>What will happen if we call <code class="language-scala">evenOrOdd</code> with 7 or 0? We will receive a match error:</p>
+
+<pre><code class="language-scala">scala&gt; evenOrOdd(7)
+scala.MatchError: 7 (of class java.lang.Integer)</code></pre>
+
+<p>A situation when matching (and assigned function if have one) has gaps in defining a property we can call <em>exhaustivity</em>. We can call exhaustive matching the one that can't produce <code class="language-scala">MatchError</code>.</p>
+
+<h5 id="conclusion">Conclusion</h5>
+
+<p>Pattern matching is a helpful technique that simplifies a lot of the Scala code. We can assign a resulting value or action for the input with the <code class="language-scala">match</code> pattern, construct a sequence of patterns and get a result from top to bottom. A pattern can be an explicit value, a type of value, a set of alternatives with <code class="language-scala">|</code>. We can add additional filtering to the pattern with <code class="language-scala">if</code>. We could use pattern matching directly with a code block or with an assigned function. To be on the safe side it is better to define exhaustive matching; this will prevent you from getting <code class="language-scala">MatchError</code>.</p>

@@ -1,0 +1,71 @@
+<h2>Introduction to collections</h2>
+<p></p><p>Most objects or concepts we face in life don't come single: you buy five apples, there are three unique answers to the question "Do you know Scala?" (yes, no, and what), we see thirty slots in a calendar for each day – you get the idea. It makes sense that in our programs we  also have to describe such structures known in programming as <strong>collections</strong>. Scala has a nice selection of types that allow to work with practically any kind of elements.  </p>
+<h5 id="lists">Lists</h5>
+<p>A simple example of a Scala collection is a <strong>list</strong>: an ordered collection with a defined length.</p>
+<pre><code class="language-scala">scala&gt; val list = List(1, 3, 8)
+list: List[Int] = List(1, 3, 8)
+scala&gt; list.length
+res1: Int = 3
+scala&gt; list(0)
+res2: Int = 1
+scala&gt; list(2)
+res3: Int = 8
+scala&gt; list(3)
+java.lang.IndexOutOfBoundsException: 3
+</code></pre>
+<p>We use <code class="language-scala">length</code> to get a count of elements and <code class="language-scala">(index)</code> to get an element with the specified index starting from 0 and ending at length minus 1. If we try to get an element with an index greater than length – 1 or negative, we'll get an error.</p>
+<p>There is a special symbol to define an empty list in Scala – <code class="language-scala">Nil</code>. It is the same as <code class="language-scala">List()</code> or <code class="language-scala">List.empty</code>. We can construct new lists with the help of <code class="language-scala">Nil</code> and concatenation <code class="language-scala">::</code>:</p>
+<pre><code class="language-scala">scala&gt; val characters = 'c' :: 'h' :: 'a' :: 'r' :: Nil
+characters: List[Char] = List(c, h, a, r)
+scala&gt; characters.isEmpty
+res4: Boolean = false
+scala&gt; characters.head
+res5: Char = c
+scala&gt; characters.tail
+res6: List[Char] = List(h, a, r)</code></pre>
+<p>Above, we've used some convenient methods for lists: <code class="language-scala">isEmpty</code> checks for emptiness, <code class="language-scala">head</code> gets the first element and <code class="language-scala">tail</code> gets the list without the first element.</p>
+<h5 id="arrays">Arrays</h5>
+<p>An<strong> array</strong> is a collection of elements each identified by index. You may ask: then what is the difference between arrays and lists? In general, the difference is not huge: arrays are just more affiliated with Java code and have low-level representation. For example, a union of arguments for the main function is an array:</p>
+<pre><code class="language-scala">object Main {
+  def main(args: Array[String]): Unit = {
+    println(args(0))
+  } 
+}</code></pre>
+<p>We're speaking of arrays mostly to build a bridge between Java and Scala; you may encounter this type of collection somewhere in your programming exercises. Practically, lists are more convenient as they have more methods. The basic operations with arrays are mostly the same as described above for the lists:</p>
+<pre><code class="language-scala">scala&gt; val array = Array(0.0, 0.5, 3.5, 4)
+array: Array[Double] = Array(0.0, 0.5, 3.5, 4.0)
+scala&gt; array.length
+res7: Int = 4
+scala&gt; array(1)
+res8: Double = 0.5
+</code></pre>
+<h5 id="sets">Sets</h5>
+<p>A <strong>set</strong> is a collection with no duplicate elements. We can check if an element is part of a set or not:</p>
+<pre><code class="language-scala">scala&gt; val set = Set(1, 2, 3)
+set: scala.collection.immutable.Set[Int] = Set(1, 2, 3)
+scala&gt; set(2)
+res9: Boolean = true
+scala&gt; set.contains(4)
+res10: Boolean = false</code></pre>
+<p>Note that we can do the check just by the <code class="language-scala">(element)</code> or with the help of <code class="language-scala">contains</code>. </p>
+<p>A reasonable question is why do we need sets if we have lists, especially since lists have the method <code class="language-scala">contains</code>, too. The answer is simple: not everything allows repetition. If we had a set of students in a group, it would be strange if we had some person twice there, or if we had two Aprils in a year. So if you want to store unique elements in a collection, <code class="language-scala">Set</code> is your choice.</p>
+<h5 id="maps">Maps</h5>
+<p><strong>Maps </strong>are collections of key and value pairs. With the help of a key, we can get a value:</p>
+<pre><code class="language-scala">scala&gt; val map = Map(1 -&gt; 'a', 2 -&gt; 'b', 5 -&gt; 'a')
+map: scala.collection.immutable.Map[Int,Char] = Map(1 -&gt; a, 2 -&gt; b, 5 -&gt; a)
+scala&gt; map(2)
+res11: Char = b
+scala&gt; map(3)
+java.util.NoSuchElementException: key not found: 3</code></pre>
+<p>Above we defined <code class="language-scala">Map</code> with <code class="language-scala">Int</code> keys and <code class="language-scala">Character</code> values. We get the value with <code class="language-scala">(key)</code>; if we don't have any, we get an error.  </p>
+<p>Maps are structures that help us match one piece of data with another, for example a name of a person with their age, or a calendar year with a list of holidays in it. Note that keys for the map form a set, so we don't have duplicates.</p>
+<pre><code class="language-scala">scala&gt; map.contains(2)
+res12: Boolean = true
+scala&gt; map.keys
+res13: Iterable[Int] = Set(1, 2, 5)
+scala&gt; map.values
+res14: Iterable[Char] = MapLike.DefaultValuesIterable(a, b, a)</code></pre>
+<p>Above we used <code class="language-scala">contains</code> to check for a key existing in <code class="language-scala">Map</code>, keys to get the key-<code class="language-scala">Set</code>, and values to get a list of all values (it is possible to have duplicates in this list).</p>
+<h5 id="conclusion">Conclusion</h5>
+<p>We've covered the main collection types in Scala. With the help of a <code class="language-scala">List</code>, we can define ordered elements, each of them with an index. With a <code class="language-scala">Set</code> we can do the same, but without duplicates. With a  <code class="language-scala">Map</code>, we can define matches between sets of keys and a list of values. </p>
+<p>We mentioned only the basic methods for collection types above, but there are others. Don't hesitate to play with your code and explore it by yourself. This is an introduction topic, so later we'll return to collections to learn more.</p>

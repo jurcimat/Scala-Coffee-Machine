@@ -1,0 +1,24 @@
+type: choice
+is_multiple_choice: true
+options:
+- text: tickets = tickets + "B4"
+- text: tickets = tickets + 'a'
+- text: tickets - tickets
+- text: tickets - "A1"
+- text: tickets = tickets - "A1"
+files:
+- name: src/Task.scala
+  visible: true
+  text: |
+    // You can experiment here, it won’t be checked
+
+    object Task {
+      def main(args: Array[String]): Unit = {
+        // put your code here
+      }
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/16323#comment
+status: Solved
+record: -1
+local_check: false

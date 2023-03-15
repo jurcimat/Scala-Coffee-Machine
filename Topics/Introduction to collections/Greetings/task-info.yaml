@@ -1,0 +1,15 @@
+type: code
+files:
+- name: src/Greetings.scala
+  visible: true
+  text: |-
+    object Greetings extends App {
+      val name = scala.io.StdIn.readLine()
+      val list = "Hello, " :: ??? :: "!" :: ???
+      println(list.mkString(""))
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/9651#comment
+status: Solved
+record: -1
+submission_language: scala

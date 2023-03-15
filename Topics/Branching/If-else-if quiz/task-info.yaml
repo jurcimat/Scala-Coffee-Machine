@@ -1,0 +1,24 @@
+type: choice
+is_multiple_choice: true
+options:
+- text: if (a &gt; 10000) 1 else if (a &gt; 1000) 10 else if (a &gt; 100) 100 else
+    if (a &gt; 10) 1000 else 1
+- text: 'if (x % 2 == 0) ''a'' else if (x % 3 == 0) ''b'' '
+- text: if (true) 1 else if 2 else if 3
+- text: if (x == 1) 2 elseif 3 else 4
+files:
+- name: src/Task.scala
+  visible: true
+  text: |
+    // You can experiment here, it won’t be checked
+
+    object Task {
+      def main(args: Array[String]): Unit = {
+        // put your code here
+      }
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/9657#comment
+status: Solved
+record: -1
+local_check: false

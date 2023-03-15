@@ -1,0 +1,94 @@
+hyperskill_project:
+  id: 267
+  ide_files: https://stepik.org/media/attachments/lesson/746573/additional_files.json
+  is_template_based: false
+  use_ide: true
+update_date: "Wed, 15 Mar 2023 08:01:10 UTC"
+stages:
+- id: 1352
+  step: 20836
+  is_completed: true
+- id: 1353
+  step: 20837
+  is_completed: true
+- id: 1354
+  step: 20838
+  is_completed: true
+- id: 1355
+  step: 20839
+  is_completed: true
+- id: 1356
+  step: 20840
+  is_completed: true
+- id: 1357
+  step: 20841
+  is_completed: true
+topics:
+  0:
+  - title: Binary numbers
+    theory_id: 5544
+  - title: Hexadecimal numbers
+    theory_id: 8788
+  - title: "Write, compile, and run"
+    theory_id: 3739
+  - title: "JVM, JRE, and JDK"
+    theory_id: 3499
+  - title: Units of information
+    theory_id: 6865
+  - title: IDE
+    theory_id: 10996
+  - title: Immutability
+    theory_id: 7929
+  - title: Input/Output
+    theory_id: 20438
+  - title: Computer programming
+    theory_id: 8739
+  - title: Paradigms
+    theory_id: 15860
+  - title: Introduction to OOP
+    theory_id: 3614
+  - title: Unicode
+    theory_id: 7899
+  - title: Introduction to Scala
+    theory_id: 8945
+  - title: Overview of the basic program
+    theory_id: 8950
+  - title: Basic literals
+    theory_id: 9298
+  - title: Values and variables
+    theory_id: 9306
+  - title: Introduction to collections
+    theory_id: 9647
+  - title: Strings
+    theory_id: 16324
+  - title: IntelliJ IDEA
+    theory_id: 3801
+  - title: IntelliJ IDEA basics
+    theory_id: 5819
+  - title: EduTools
+    theory_id: 5839
+  - title: Introduction to Scala Style Guide
+    theory_id: 17547
+  - title: Imports
+    theory_id: 24996
+  - title: Scala Build Tool
+    theory_id: 23725
+  2:
+  - title: Computer algorithms
+    theory_id: 16547
+  - title: Functions
+    theory_id: 13884
+  - title: Introduction to functions
+    theory_id: 9315
+  - title: Branching
+    theory_id: 9655
+  3:
+  - title: Defining new collections
+    theory_id: 16308
+  - title: Modifying collections
+    theory_id: 16316
+  - title: Introduction to pattern matching
+    theory_id: 16332
+  4:
+  - title: Loops
+    theory_id: 16340

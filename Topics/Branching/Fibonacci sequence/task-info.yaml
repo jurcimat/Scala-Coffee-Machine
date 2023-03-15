@@ -1,0 +1,23 @@
+type: code
+files:
+- name: src/Fibonacci.scala
+  visible: true
+  text: |-
+    object Fibonacci extends App {
+
+      def printNumber(???, ???, count: Int): Unit =
+        if (count > 0) {
+          println(???)
+          printNumber(???, ???, count - 1)
+        }
+
+      printNumber(0, 1, ???)
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/9659#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Thu, 09 Mar 2023 14:24:56 UTC"
+record: -1
+submission_language: scala

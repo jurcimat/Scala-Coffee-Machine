@@ -1,0 +1,76 @@
+<h2>Input/Output</h2>
+<html><body><p>Have you ever heard of<strong> I/O</strong>? Let's learn what it is and how to use it! You probably know some simple math functions like <span class="math-tex">\(y=f(x).\)</span> But how does such a function differs from a real program?<br/>
+The answer is simple: it does not interact with the real world in any way. We can call such a function for various arguments, and these arguments will be determined at compile time of our program. If we want to receive arguments at runtime or print the result to the user, we need a tool to help us do this. This is where <strong>input/output </strong>comes<strong> </strong>in handy. In this topic, you'll see how Scala implements I/O.</p>
+<h5 id="printing-to-console">Printing to console</h5>
+<p>The first input/output function is <code class="language-scala">print</code> which will print a message inside the function to the console:</p>
+<pre><code class="language-scala">print("Hello, World!")</code></pre>
+<p>Note that we don't need to import anything to use the function.</p>
+<p>The second function is <code class="language-scala">println</code>, which differs from the previous one only by a new line:</p>
+<pre><code class="language-scala">println("Hello, World!") // Writing "Hello, World!" to the console with the new line at the end</code></pre>
+<p>Alternatively:</p>
+<pre><code class="language-scala">print("Hello, World!" + "\n")</code></pre>
+<p>Instead of the String data type, you can use any other: Int, Float, Char, or Boolean:</p>
+<pre><code class="language-scala">println(5) // 5
+
+println(0.12345) // 0.12345
+
+println('a') // a
+
+println(true) // true</code></pre>
+<p>In addition, we can print values and variables that are simple data types:</p>
+<pre><code class="language-scala">val a = 10
+
+print(a) // 10</code></pre>
+<h5 id="reading-from-console">Reading from console</h5>
+<p>Great! We got acquainted with the <code class="language-scala">print</code> function. Let's find out how you can read information from the user.</p>
+<p>Scala provides us with a convenient function called <code class="language-scala">readLine</code>. To use it, you need to import this function. It is located in the <code class="language-scala">scala.io.StdIn</code> package. Let's do it:</p>
+<pre><code class="language-scala">import scala.io.StdIn.readLine</code></pre>
+<p>Now we can easily use the function:</p>
+<pre><code class="language-scala">val name = readLine()</code></pre>
+<p>In this example, we are trying to initialize a variable with a value we get from the user. If we enter <code class="language-scala">Kate</code>, the name value will be "Kate", if we enter <code class="language-scala">Bob</code>, then the value will be "Bob", respectively. </p>
+<p>Be careful: the line break, in this case, will not go to the result. Everything that goes before the new line will be written to the variable.</p>
+<p>While calling this function, the program will wait for your input in the console. We will get the result after pressing Enter:</p>
+<pre><code class="language-scala">scala&gt; readLine()
+// &lt;- The program stops, the user enters "Alice Bella"
+res0: String = Alice Bella</code></pre>
+<p>The function can also take a string that will be a hint for the user:</p>
+<pre><code class="language-scala">scala&gt; readLine("Enter your name: ")
+Enter your name: // &lt;- The program stops, the user enters "Alice Bella"
+res1: String = Alice Bella</code></pre>
+<p>This behavior will be the same with the following:</p>
+<pre><code class="language-scala">print("Enter your name: ")
+
+val name = readLine()</code></pre>
+<p>As you can see, the code is more compact this way.</p>
+<p>Note that calling the <code class="language-scala">readLine</code> function blocks other functions. Look at the following code:</p>
+<pre><code class="language-scala">val name = readLine("Enter your name: ")
+
+print("Hi there!")</code></pre>
+<p>It will not print anything until we enter the name.</p>
+<p>It may be useful to read just one string from the console instead of reading each word in separate values. Let's look at an example:</p>
+<pre><code class="language-scala">val friends = readLine("Enter the names of your friends: ").split(", ").toList</code></pre>
+<p>After reading the variable, we can work with it the same way as with ordinary variables. In this case, when entering the <code class="language-scala">Alice, Bob, Alex</code> string, we will get the following result:</p>
+<pre><code class="language-scala">List("Alice", "Bob", "Alex")</code></pre>
+<h5 id="specific-read">Specific read</h5>
+<p>The <code class="language-scala">readLine</code> function reads a String from the user. If you enter <code class="language-scala">5</code>, the variable assigned with this value will be <code class="language-scala">"5"</code>. </p>
+<p>Luckily, you don't need to convert a string to other data types because there are other useful functions:</p>
+<ul>
+<li><code class="language-scala">readInt</code> reads the Int data type</li>
+<li><code class="language-scala">readLong</code> reads the Long data type</li>
+<li><code class="language-scala">readBoolean</code> reads the Boolean data type</li>
+</ul>
+<p>Note that these functions check the input value for validation. For example, in this case:</p>
+<pre><code class="language-scala">val result = readInt()</code></pre>
+<p>If you enter <code class="language-scala">"hello"</code>, the function will throw a <code class="language-scala">NumberFormatException</code> because it was expecting a number, not a string.</p>
+<h5 id="a-program-with-io">A program with I/O</h5>
+<p>Let's write a simple Scala program with I/O that will use the user input in the output.</p>
+<pre><code class="language-scala">import scala.io.StdIn.readLine
+
+object ScalaExample {
+  def main(args: Array[String]) {
+    val name = readLine("Enter your name: ")
+    println("Good morning, " + name)
+  }
+}</code></pre>
+<h5 id="conclusion">Conclusion</h5>
+<p>In this topic, you got acquainted with the I/O in Scala. You learned that <code class="language-scala">print</code> and <code class="language-scala">println</code> allow you to print to the console, and <code class="language-scala">readLine</code>, <code class="language-scala">readInt</code>, <code class="language-scala">readBoolean</code>, <code class="language-scala">readLong</code> allow you to read data from the console. Now you can try and write your own program in Scala using I/O!</p></body></html>
